@@ -1,0 +1,69 @@
+<div class="row border1">
+    <div class="container">
+      <div class="card rounded-lg" style="border: 5px solid rgba(243, 11, 11, 0.301); background-color:rgb(127, 255, 148);" >
+        <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 >Staff Details</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <form [formGroup]="staffForm" style="border: 3px solid black; padding: 10px;"> 
+          <div class="form-group">
+            <label >Staff Name:</label>
+            <input type="text" class="form-control" placeholder="Enter Staff Name" formControlName="staffName" [ngClass]="{'is-invalid': stffButton && f['staffName'].errors}">
+            <div *ngIf="stffButton && f['staffName'].errors"  class="invalid-feedback">
+              <div *ngIf="f['staffName'].errors['required']">
+                Staff Name Is required
+              </div>
+              <div *ngIf="f['staffName'].errors['minlength']">
+                Staff Name must be Minimus 4 Char ....!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label >Salary:</label>
+            <input type="text" class="form-control" placeholder="Enter Salary" formControlName="staffSalary" [ngClass]="{'is-invalid': stffButton && f['staffSalary'].errors}">
+            <div *ngIf="stffButton && f['staffSalary'].errors" class="invalid-feedback" >
+              Staff Salary Is required
+            </div>
+          </div>
+          
+          <button *ngIf="editoper==false" class="btn btn-primary" (click)="addStaff()">Add Details</button>
+          <button *ngIf="editoper==true" class="btn btn-warning" (click)="UpdateStaff()" >Update Details</button>
+          </form>
+        </div>
+        <div class="col-lg-8">
+          <div class="col-lg-12" style="padding-bottom: 1rem;">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="term">
+    
+          </div>
+    
+          <div class="col-lg-12 table-responsive" style="height: 400px;">
+        <table class="table table-primary">
+          <thead>
+            <tr>
+              <th>Staff Name</th>
+              <th>Salary</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let staf of staffList |filter:term ; let staff = index">
+              <td>{{staf.staffName}}</td>
+              <td>{{staf.staffSalary}}</td>
+              <td>
+                <button class="btn btn-warning" (click)="stafEdit(staff,staf)">Edit</button>
+                <button class="btn btn-danger" (click)="stafDelete(staff)">Delete</button>
+             </td>
+            </tr>
+           </tbody>
+        </table>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>

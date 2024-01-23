@@ -1,0 +1,74 @@
+<div class="row border1" >
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+      <div class="card bg-warning text-white  rounded-lg" style="border: 5px solid rgba(243, 11, 11, 0.301); " >
+        <div class="card-body">
+      <div class="row" >
+        <div class="col-lg-3"></div>
+
+        <div class="col-lg-6 text-center">
+          
+          <h2 style="background-color: rgb(255, 113, 47)">Registration Page</h2>
+        </div>
+        <div class="col-lg-3"></div>
+      </div>
+      <br>
+      
+          <form [formGroup]="regForm">
+      <div class="form-group">
+        <label >Name:</label>
+        <input type="text" class="form-control" placeholder="Enter  Full Name" formControlName="fullName" [ngClass]="{'is-invalid': regbutton && f['fullName'].errors}">
+        <div *ngIf="regbutton && f['fullName'].errors"  class="invalid-feedback">
+
+          <div *ngIf="f['fullName'].errors['required']">
+            Full Name Is required
+          </div>
+          <div *ngIf="f['fullName'].errors['minlength']">
+             Name must be  Minimum 6 Char ....!
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label >Date of birth:</label>
+        <input type="date" class="form-control" placeholder="Enter DOB" formControlName="dob" [ngClass]="{'is-invalid': regbutton && f['dob'].errors}">
+        <div *ngIf="regbutton && f['dob'].errors" class="invalid-feedback" >
+          DOB Is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label >Mobile No.:</label>
+        <input type="text" class="form-control" placeholder="Enter Mobile No." formControlName="mob" [ngClass]="{'is-invalid': regbutton && f['mob'].errors}">
+        <div *ngIf="regbutton && f['mob'].errors" class="invalid-feedback" >
+          Mobile No. Is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label >Email address:</label>
+        <input type="email" class="form-control" placeholder="Enter email"formControlName="remail" [ngClass]="{'is-invalid': regbutton && f['remail'].errors}">
+        <div *ngIf="regbutton && f['remail'].errors" class="invalid-feedback" >
+          Email ID Is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label >Password:</label>
+        <input type="password" class="form-control" placeholder="Enter password" formControlName="rpass" [ngClass]="{'is-invalid': regbutton && f['rpass'].errors}" >
+        <div *ngIf="regbutton && f['rpass'].errors"  class="invalid-feedback">
+
+        <div *ngIf="f['rpass'].errors['required']">
+          Password Must be required
+        </div>
+        <div *ngIf="f['rpass'].errors['minlength']">
+          Password must be 4 Char ....!
+        </div>
+      </div>
+      </div>
+      <button  class="btn btn-success" (click)="register()" >Register</button>
+          </form>
+    </div>
+  </div>
+     
+    </div>
+    
+    <div class="col-lg-3"></div>
+  
+  </div>

@@ -1,0 +1,49 @@
+<div class="row border1">
+  
+  
+    <div class="col-lg-3"></div>
+  
+    
+    <div class="col-lg-6">
+      <div class="card bg-success text-white" >
+        <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 >Login Page</h2>
+        </div>
+      </div>
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <label >User Name:</label>
+          <input type="email" class="form-control" placeholder="Enter email" formControlName="email" [ngClass]="{'is-invalid': loginop && f['email'].errors}" >
+          <div *ngIf="loginop && f['email'].errors"  class="invalid-feedback">
+            <div *ngIf="f['email'].errors['required']">
+              User Name Is required
+            </div>
+            <div *ngIf="f['email'].errors['minlength']">
+              User Name must be 6 Char ....!
+            </div>
+          </div>
+           </div>
+           
+        <div class="form-group">
+          <label >Password:</label>
+          <input type="password" class="form-control" placeholder="Enter password" formControlName="password"  [ngClass]="{'is-invalid': loginop && f['password'].errors}">
+          <div *ngIf="loginop && f['password'].errors" class="invalid-feedback" >
+            Password Is required
+          </div>
+        </div>
+        
+        <button  class="btn btn-danger" (click)="login()" >Login</button>
+      </form>
+      
+      </div>
+    </div>
+  </div>
+
+    
+
+     
+    <div class="col-lg-3"></div>
+  
+  </div>

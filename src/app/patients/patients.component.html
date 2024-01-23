@@ -1,0 +1,69 @@
+<div class="row border1">
+    <div class="container">
+      <div class="card rounded-lg" style="border: 5px solid rgba(243, 11, 11, 0.301); background-color:rgb(255, 127, 255);" >
+        <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 >Patients Details</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <form [formGroup]="patientsForm" style="border: 3px solid black; padding: 10px;">
+          <div class="form-group">
+            <label >Patients Name:</label>
+            <input type="text" class="form-control" placeholder="Enter Patients Name" formControlName="patientsName" [ngClass]="{'is-invalid': patbutton && f['patientsName'].errors}">
+            <div *ngIf="patbutton && f['patientsName'].errors"  class="invalid-feedback">
+              <div *ngIf="f['patientsName'].errors['required']">
+                Patients Name Is required
+              </div>
+              <div *ngIf="f['patientsName'].errors['minlength']">
+                Patients Name must be Minimus 6 Char ....!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label >Address:</label>
+            <input type="text" class="form-control" placeholder="Enter Address" formControlName="patientsAdd" [ngClass]="{'is-invalid': patbutton && f['patientsAdd'].errors}">
+            <div *ngIf="patbutton && f['patientsAdd'].errors" class="invalid-feedback" >
+              Patients Address Is required
+            </div>
+          </div>
+          
+          <button *ngIf="editop==false" class="btn btn-primary" (click)="addPat()" >Add Details</button>
+          <button *ngIf="editop==true" class="btn btn-warning" (click)="updatePat()">Update Details</button>
+          </form>
+        </div>
+        <div class="col-lg-8">
+          <div class="col-lg-12" style="padding-bottom: 1rem;">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="term">
+    
+          </div>
+    
+          <div class="col-lg-12 table-responsive" style="height: 400px;">
+        <table class="table table-warning">
+          <thead>
+            <tr>
+              <th>Patients Name</th>
+              <th>Patients Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let put of patientsList |filter:term ; let patr=index">
+              <td>{{put.patientsName}}</td>
+              <td>{{put.patientsAdd}}</td>
+              <td>
+                <button class="btn btn-warning" (click)="patEdit(patr, put)">Edit</button>
+                <button class="btn btn-danger" (click)="patDelete(patr)">Delete</button>
+             </td>
+            </tr>
+           </tbody>
+        </table>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,70 @@
+<div class="row border1">
+    <div class="container">
+      <div class="card rounded-lg" style="border: 5px solid rgba(243, 11, 11, 0.301); background-color:aquamarine;" >
+        <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 >Doctors Details</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <form [formGroup]="drForm" style="border: 3px solid black; padding: 10px;">
+          <div class="form-group">
+            <label >Doctor Name:</label>
+            <input type="text" class="form-control" placeholder="Enter Doctar Name" formControlName="drName"  [ngClass]="{'is-invalid': draddbutton && f['drName'].errors}">
+            <div *ngIf="draddbutton && f['drName'].errors"  class="invalid-feedback">
+              <div *ngIf="f['drName'].errors['required']">
+                Dr. Name Is required
+              </div>
+              <div *ngIf="f['drName'].errors['minlength']">
+                Dr. Name must be Minimum 6 Char ....!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label >Timeing:</label>
+            <input type="text" class="form-control" placeholder="Enter Timeing" formControlName="drTimeing"  [ngClass]="{'is-invalid': draddbutton && f['drTimeing'].errors}">
+            <div *ngIf="draddbutton && f['drTimeing'].errors" class="invalid-feedback" >
+              Dr Timeing  Is required
+            </div>
+          </div>
+          
+          <button *ngIf="editoperation==false" class="btn btn-primary" (click)="addDr()">Add Details</button>
+          <button *ngIf="editoperation==true" class="btn btn-warning" (click)="updateDr()" >Update Details</button>
+  
+          </form>
+        </div>
+        <div class="col-lg-8">
+          <div class="col-lg-12" style="padding-bottom: 1rem;">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="term">
+    
+          </div>
+    
+          <div class="col-lg-12 table-responsive" style="height: 400px;">
+        <table class="table table-info">
+          <thead>
+            <tr>
+              <th>Doctar Name</th>
+              <th>Timeing</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dor of drList |filter:term ; let docr=index">
+              <td>{{dor.drName}}</td>
+              <td>{{dor.drTimeing}}</td>
+              <td>
+                <button class="btn btn-warning" (click)="drEdit(docr,dor)">Edit</button>
+                <button class="btn btn-danger" (click)="drDelete(docr)">Delete</button>
+             </td>
+            </tr>
+           </tbody>
+        </table>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
